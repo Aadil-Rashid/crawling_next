@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+*{
+    font-family: 'Libre Baskerville', serif;
+}
+
+.profile{
+    margin-top: 10vh;
+    background: beige;
+    border-radius: 80px;
+    box-shadow: 5px 8px 7px 5px rgba(0, 0, 0, 0.125);
+    padding: 60px;
+    text-transform: capitalize;
+    line-height: 2em;
+    margin-bottom: 10vh;
+}
+.profile:hover{
+    box-shadow: 0px 0px 35px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    /* height: 53vh;
+    width: 65vw; */
+}
+.profile-details{
+    margin-top: 3vh;
+    margin-left: 2vw;
+}
+
+.profile-details h4 {
+    color: rgb(194, 126, 63);
+    font-weight: 400;
+}
+.profile-details span {
+    color: rgb(30, 30, 107);
+    font-weight: 500;
+}
+.profile-details__email {
+    text-transform: lowercase;
+}
+
+.profile-details__about{
+    display: flex;
+    justify-content:flex-start;
+    align-items: baseline;
+    gap: 30px;
+}
+
+.profile-details__about p {
+    color: rgb(30, 30, 107);
+    font-weight: 600;
+    
+}

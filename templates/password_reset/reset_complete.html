@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+<!-- Title Of page -->
+{% block title %} password reset status {% endblock title %} 
+
+{% block content %}
+
+<div class="container">
+  <div class="mb-5">
+    <h3 class="mb-4">You have successfully reset your Password</h3>
+    <h5>Now you are able to login with your new password</h5>
+    <a href="{% url 'users:login' %}"
+      ><button class="btn btn-success btn-sm">Tap to login</button></a
+    >
+  </div>
+</div>
+{% endblock content %}

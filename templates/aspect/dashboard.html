@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+
+<!-- Title Of page -->
+{% block title %}
+user dashboard
+{% endblock title %}
+
+{% block content %}
+<div class="profile">
+<h1 class="text-center">Wellcome to the website: {{user.user_name}}</h1>
+<hr>
+<div class="profile-details">
+<h4 class="profile-details__email">Email: <span>{{user.email}}</span></h4>
+<h4>first_name: <span>{{user.first_name}}</span></h4>
+<h4>middle_name: <span> {{user.middle_name}}</span> </h4>
+<h4>last_name: <span>{{user.last_name}}</span></h4>
+<h4>Contact: <span>{{user.mobile_number}}</span></h4>
+<div class="profile-details__about">
+<h4>About: </h4> <p> {{user.about}}</p>
+</div>
+<h4>Last login: <span>{{ user.last_login }}</span></h4>
+</div>
+</div>
+
+
+{% endblock content %}
