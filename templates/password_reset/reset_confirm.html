@@ -1,40 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'aspect/NewBase.html' %}
+
 
 <!-- Title Of page -->
 {% block title %}
-Reset confirm
-{% endblock title %}
+    confirm Password
+{% endblock title %} 
 
-{% block content %}
+
+{% block user_content %}
+
 {% if request.user.is_authenticated %}
-        <script>
-            window.location.href = '{% url "users:dashboard" %}';
-        </script>
-    {% endif %}
-        <div class="container">
-            <form class="login-form" method="post">
-                {% csrf_token %}
-                <h1 class="h3 mb-4 font-weight-bold">Change your password</h1>
-                <p>Use the form below to change your password.</p>
+<script>
+    window.location.href = '{% url "users:dashboard" %}';
+</script>
+{% endif %}
 
-                {% if form.errors %}
-                <div class="alert alert-primary" role="alert">
-                    Error: An error has occurred!
-                </div>
-                {% endif %}
 
-                <label class="small font-weight-bold">{{ form.new_password1.label}}</label>
-                {{ form.new_password1 }}
-                <label class="small font-weight-bold">{{ form.new_password2.label}}</label>
-                {{ form.new_password2 }}
-                <ul>
-                    <li>Your password can’t be too similar to your other personal information.</li>
-                    <li>Your password must contain at least 8 characters.</li>
-                    <li>Your password can’t be a commonly used password.</li>
-                    <li>Your password can’t be entirely numeric.</li>
-                </ul>
-                <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw-bold" type="submit" value="Change">Submit
-                </button>
-            </form>
+<div class="text-center mb-10 mb-lg-20">
+    <h3 class="">Change your password</h3>
+    <p class="text-muted font-weight-bold">Use the form below to change your password.</p>
+</div>
+<div class="container">
+    <form class="login-form" method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="alert alert-primary" role="alert">
+            Error: An error has occurred!
         </div>
-{% endblock content %}
+        {% endif %}
+
+        <label class="small font-weight-bold px-1">{{ form.new_password1.label}}</label>
+        {{ form.new_password1 }}
+        <label class="small font-weight-bold px-1">{{ form.new_password2.label}}</label>
+        {{ form.new_password2 }}
+         
+        <button id="kt_login_forgot_submit" class="btn btn-primary  font-weight-bold px-9 py-4 my-3 mx-2" type="submit" value="Change">Submit</button>
+
+    </form>
+</div>
+
+
+{% endblock user_content %}
+
+
+ 

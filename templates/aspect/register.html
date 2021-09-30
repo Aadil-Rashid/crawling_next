@@ -1,218 +1,52 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% extends 'aspect/NewBase.html' %}
+
 
 <!-- Title Of page -->
 {% block title %}
-registration page
-{% endblock title %}
+    Signup Page 
+{% endblock title %} 
 
-{% block content %}
-<div class="d-flex flex-column flex-root">
-  
-    <!--begin::Aside-->
-    <div
-      class="
-        login-aside
-        order-2 order-lg-1
-        d-flex
-        flex-column-fluid flex-lg-row-auto
-        bgi-size-cover bgi-no-repeat
-        p-7 p-lg-10
-      "
-    >
-      <!--begin: Aside Container-->
-      <div class="d-flex flex-row-fluid flex-column justify-content-between">
-        <!--begin::Aside body-->
-        <div
-          class="d-flex flex-column-fluid flex-column flex-center mt-5 mt-lg-0"
+
+{% block user_content %}
+    <!--begin::Signup-->
+ 
+    <div class="text-center mb-10 mb-lg-20">
+        <h3 class="">Sign Up</h3>
+        <p class="text-muted font-weight-bold">
+        Enter your details to create your account
+        </p>
+    </div>
+
+    <!--begin::SignUp Form-->
+
+    <form class="form" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group py-3 m-0">{{ form.user_name }}</div>
+        <div class="form-group py-3 border-top m-0">{{ form.email }}</div>
+        <div class="form-group py-3 border-top m-0">{{ form.password1 }}</div>
+        <div class="form-group py-3 border-top m-0">{{ form.password2 }}</div>
+        <div class="form-group mt-5">
+        <div class="checkbox-inline">
+            <label class="checkbox checkbox-outline">
+            <input type="checkbox" name="agree" />
+            <span></span>
+            I Agree the
+            <a href="#" class="ml-1">terms and conditions</a>.
+            </label>
+        </div>
+        </div>
+        <div class="form-group d-flex flex-wrap flex-center">
+        <button
+            id="kt_login_signup_submit"
+            class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2"
+            type="submit"
         >
-          <a href="#" class="mb-15 text-center">
-            <img
-              src="{% static './assets/media/logos/logo-letter-1.png' %}"
-              class="max-h-75px"
-              alt=""
-            />
-          </a>
-
-           <!--begin::Signup-->
-           <div class="login-form login-signup">
-            <div class="text-center mb-10 mb-lg-20">
-              <h3 class="">Sign Up</h3>
-              <p class="text-muted font-weight-bold">
-                Enter your details to create your account
-              </p>
-            </div>
-
-            <!--begin::SignUp Form-->
-            
-            <form
-              class="form"
-              method="post"
-              action="."
-            >
-            {% csrf_token %}
-
-              <div class="form-group py-3 m-0">
-                {{ form.user_name }}
-              </div>
-              <div class="form-group py-3 border-top m-0">
-                {{ form.email }}
-              </div>
-              <div class="form-group py-3 border-top m-0">
-                {{ form.password1 }}
-              </div>
-              <div class="form-group py-3 border-top m-0">
-                {{ form.password2 }}
-
-              </div>
-              <div class="form-group mt-5">
-                <div class="checkbox-inline">
-                  <label class="checkbox checkbox-outline">
-                    <input type="checkbox" name="agree" />
-                    <span></span>
-                    I Agree the
-                    <a href="#" class="ml-1">terms and conditions</a>.
-                  </label>
-                </div>
-              </div>
-              <div class="form-group d-flex flex-wrap flex-center">
-                <button
-                  id="kt_login_signup_submit"
-                  class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2"
-                  type="submit"
-                >
-                  Submit
-                </button>
-                 
-              </div>
-            </form>
-            <!--end::signUp Form-->
-          </div>
-          <!--end::Signup-->
-
-
-
-
-
+            Submit
+        </button>
         </div>
-        <!--end::Aside body-->
-
-         
-
-
-
-      </div>
-      <!--end: Aside Container-->
-    </div>
-    <!--begin::Aside-->
-
-    <!--begin::Content-->
-    <div
-      class="
-        order-1 order-lg-2
-        flex-column-auto flex-lg-row-fluid
-        d-flex
-        flex-column
-        p-7
-      "
-
-
-      style="background-image: url( '{%static "assets/media/bg/bg-4.jpg" %}' )"
-    >
-      <!--begin::Content body-->
-      <div class="d-flex flex-column-fluid flex-lg-center">
-        <div class="d-flex flex-column justify-content-center">
-          <h3 class="display-3 font-weight-bold my-7 text-white">
-            Welcome to Metronic!
-          </h3>
-          <p class="font-weight-bold font-size-lg text-white opacity-80">
-            The ultimate Bootstrap, Angular 8, React & VueJS admin theme<br />framework
-            for next generation web apps.
-          </p>
-        </div>
-      </div>
-      <!--end::Content body-->
-    </div>
-    <!--end::Content-->
-   
-  <!--end::Login-->
-</div>
-
-
-<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
-<!--begin::Global Config(global config for global JS scripts)-->
-<script>
-    var KTAppSettings = {
-"breakpoints": {
-"sm": 576,
-"md": 768,
-"lg": 992,
-"xl": 1200,
-"xxl": 1400
-},
-"colors": {
-"theme": {
-    "base": {
-        "white": "#ffffff",
-        "primary": "#3699FF",
-        "secondary": "#E5EAEE",
-        "success": "#1BC5BD",
-        "info": "#8950FC",
-        "warning": "#FFA800",
-        "danger": "#F64E60",
-        "light": "#E4E6EF",
-        "dark": "#181C32"
-    },
-    "light": {
-        "white": "#ffffff",
-        "primary": "#E1F0FF",
-        "secondary": "#EBEDF3",
-        "success": "#C9F7F5",
-        "info": "#EEE5FF",
-        "warning": "#FFF4DE",
-        "danger": "#FFE2E5",
-        "light": "#F3F6F9",
-        "dark": "#D6D6E0"
-    },
-    "inverse": {
-        "white": "#ffffff",
-        "primary": "#ffffff",
-        "secondary": "#3F4254",
-        "success": "#ffffff",
-        "info": "#ffffff",
-        "warning": "#ffffff",
-        "danger": "#ffffff",
-        "light": "#464E5F",
-        "dark": "#ffffff"
-    }
-},
-"gray": {
-    "gray-100": "#F3F6F9",
-    "gray-200": "#EBEDF3",
-    "gray-300": "#E4E6EF",
-    "gray-400": "#D1D3E0",
-    "gray-500": "#B5B5C3",
-    "gray-600": "#7E8299",
-    "gray-700": "#5E6278",
-    "gray-800": "#3F4254",
-    "gray-900": "#181C32"
-}
-},
-"font-family": "Poppins"
-};
-</script>
-<!--end::Global Config-->
-
-<!--begin::Global Theme Bundle(used by all pages)-->
-
-           <script src="{% static 'assets/plugins/global/plugins.bundle.js' %}"></script>
-           <script src="{% static 'assets/plugins/custom/prismjs/prismjs.bundle.js' %}"></script>
-           <script src="{% static 'assets/js/scripts.bundle.js' %}"></script>
-        <!--end::Global Theme Bundle-->
-
-
-            <!--begin::Page Scripts(used by this page)-->
-                    <script src="{% static 'assets/js/pages/custom/login/login-general.js' %}"></script>
-                <!--end::Page Scripts-->
-{% endblock content %}
+    </form>
+    <!--end::signUp Form-->
+    
+    <!--end::Signup-->
+{% endblock user_content %}

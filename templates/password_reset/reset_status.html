@@ -1,18 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'aspect/NewBase.html' %}
+
 
 <!-- Title Of page -->
 {% block title %}
-password reset status
-{% endblock title %}
+        Status
+{% endblock title %} 
 
-{% block content %}
 
-<div class="container">
-    <div class='mb-5'>
-        
-        <h3 class="mb-4">Password reset link has been successfully sent to your email</h3>
-        <p>Please check your email for instructions</p>
-         
+{% block user_content %}
+     <!--begin::Forgot-->
+<div class="login-form  ">
+    <div class="text-center mb-10 mb-lg-20">
+        <h3 class="">Status</h3>
+        <p class="text-muted font-weight-bold">Password reset link has been sent on your email</p>
     </div>
+
+    <!--begin::Form-->
+    <h3>Please check your email for instructions</h3>
+    </form>
+    <!--end::Form-->
 </div>
-{% endblock content %}
+<!--end::Forgot-->     
+{% endblock user_content %}

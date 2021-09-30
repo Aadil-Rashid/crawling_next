@@ -1,21 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'aspect/NewBase.html' %}
 
 <!-- Title Of page -->
 {% block title %}
-logout page
-{% endblock title %}
+   Logout
+{% endblock title %} 
 
-{% block content %}
 
-<div class="container text-center p-4">
-    <h2>You have successfully logged out</h2>
-    <hr>
+{% block user_content %}
+     <!--begin::Forgot-->
+<div class="login-form  ">
+    <div class="text-center mb-10 mb-lg-20">
+        <h3 class="">Logout Page</h3>
+        <p class="text-muted font-weight-bold">You have been successfully logged out</p>
+    </div>
+
     <div class="border-top p-4">
-        <h5>
-            <b>login again to</b> <a class="ml-2" href="{% url 'users:login' %}"><button class="btn btn-success btn-sm">Website</button></a>
+        <h5 class="text-center">
+         <a class="ml-2" href="{% url 'users:login' %}"><button class="btn btn-success btn-sm">Login Again</button></a>
         </h5>
     </div>
-    <hr>
 </div>
-
-{% endblock content %}
+<!--end::Forgot-->     
+{% endblock user_content %}

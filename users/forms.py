@@ -17,9 +17,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ("user_name", "email")
-
-    
-        
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

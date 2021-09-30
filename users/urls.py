@@ -46,7 +46,7 @@ urlpatterns = [
                form_class=PwdResetConfirmForm),
           name="password_reset_confirm"),
 
-     path('password_reset_confirm/Mg/password_reset_complete/',
+     path('password_reset_confirm/MTA/password_reset_complete/',
           TemplateView.as_view(
                template_name="password_reset/reset_complete.html"),
           name='password_reset_complete'),
