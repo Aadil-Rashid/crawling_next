@@ -22,7 +22,7 @@ def UserRegisterView(request):
         if form.is_valid():
             userType = request.POST.get('user_type', 'off')
             user = form.save()
-        #    if usertype is on make super admin else 
+            # if usertype is on make superadmin  
             if userType == 'on':
                 group = Group.objects.get(name='Super-admin')
             else:
