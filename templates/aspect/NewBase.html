@@ -60,14 +60,15 @@ License: You must have a valid license purchased only from themeforest(the above
               {% else %}
               <a class="navbar-brand" href="{% url 'users:login' %}">WebSite</a>
               {% endif %}
-                  {% if user.is_authenticated %}
-                  <a class="navbar-brand" href="{% url 'users:dashboard' %}"> Wellcome: {{user.user_name}} </a>
-                  <a class="navbar-brand" href="{% url 'users:profile' %}">Edit Details</a>
-                  <a class="navbar-brand" href="{% url 'users:logout' %}"> Logout </a>
-                  {% else %}
-                    <a class="navbar-brand" href="{% url 'users:login' %}">Login</a>
-                    <a class="navbar-brand" href="{% url 'users:register' %}">Register</a>
-                  {% endif %}           
+
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'users:dashboard' %}"> Wellcome: {{user.user_name}} </a>
+            <a class="navbar-brand" href="{% url 'users:profile' user.id %}">Edit Details</a>
+            <a class="navbar-brand" href="{% url 'users:logout' %}"> Logout </a>
+            {% else %}
+            <a class="navbar-brand" href="{% url 'users:login' %}">Login</a>
+            <a class="navbar-brand" href="{% url 'users:register' %}">Register</a>
+            {% endif %}           
             </div>
             
           </nav>
@@ -209,4 +210,5 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--end::Page Scripts-->
             </body>
     <!--end::Body-->
+    
 </html>

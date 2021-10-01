@@ -3,11 +3,54 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
-
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+
+from .decorators import unauthenticated_user, nonAdmin_only
 
 
 from .forms import UserRegisterForm, UserEditForm
+from django.contrib.auth.models import Group
+
+
+
+def UserRegisterView(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            userType = request.POST.get('user_type', 'off')
+            user = form.save()
+        #    if usertype is on make super admin else 
+            if userType == 'on':
+                group = Group.objects.get(name='Super-admin')
+            else:
+                group = Group.objects.get(name='Non-admin')
+            user.groups.add(group)
+            return redirect('users:login')
+    else:
+        form = UserRegisterForm()
+
+    context = {'form': form, }
+    return render(request, 'aspect/register.html', context)
+
+
+@unauthenticated_user
+def loginPageView(request):
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password =request.POST.get('password')
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect('users:dashboard')
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+
+	return render(request, 'aspect/login.html')
+
+
 
 # from django.http import  HttpResponseRedirect
 
@@ -28,11 +71,11 @@ from .forms import UserRegisterForm, UserEditForm
 #     context = {'form': form, }
 #     return render(request, 'aspect/register.html', context)
 
-class UserRegisterView(CreateView):
-    model = UserModel
-    template_name = 'aspect/register.html'
-    form_class = UserRegisterForm
-    success_url = '/'
+# class UserRegisterView(CreateView):
+#     model = UserModel
+#     template_name = 'aspect/register.html'
+#     form_class = UserRegisterForm
+#     success_url = '/'
     # def form_valid(self, form):
     #     print('************', form)
     #     print('**********instanceof Form:  ---**', form.instance)
@@ -42,8 +85,19 @@ class UserRegisterView(CreateView):
 
 
 
-class UserDashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'aspect/dashboard.html';
+# @allowed_users(allowed_roles=['Non-admin'])
+
+@login_required
+@nonAdmin_only
+def UserDashboardView(request):
+    return render(request, 'aspect/dashboard.html')
+
+@login_required
+def superAdminView(request):
+    return render(request, 'aspect/super_admin_dashboard.html')
+
+# class UserDashboardView(LoginRequiredMixin, TemplateView):
+#     template_name = 'aspect/dashboard.html';
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
     model = UserModel
@@ -58,20 +112,6 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 
 
 
-# def userRegisterView(request):
-#     if request.method == "POST":
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             # user.email = form.cleaned_data['email']
-#             user.set_password(form.cleaned_data['password'])
-#             user.save()
-#             return redirect('users:login')
-#     else:
-#         form = UserRegisterForm()
-
-#     context = {'form': form, }
-#     return render(request, 'aspect/register.html', context)
 
 # @login_required
 # def userdashboardView(request):

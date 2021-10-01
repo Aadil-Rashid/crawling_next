@@ -7,11 +7,10 @@ from .import views
 app_name = 'users'
 
 urlpatterns = [
-     path('register/', views.UserRegisterView.as_view(), name='register'),
+     path('register/', views.UserRegisterView, name='register'),
 
-     # User DashBoard
-     # path('dashboard/', views.userdashboardView, name='dashboard'),
-     path('dashboard/', views.UserDashboardView.as_view(), name='dashboard'),
+     path('dashboard/', views.UserDashboardView, name='dashboard'),
+     path('superadmin/', views.superAdminView, name="superAdminDashboard"),
 
 
      path('profile/<int:pk>/', views.UserProfileView.as_view(), name='profile'),
@@ -20,8 +19,11 @@ urlpatterns = [
           template_name="aspect/delete_confirm.html"), name='delete-confirmation'),
 
 
-     path('', auth_views.LoginView.as_view(
-          template_name='aspect/login.html', form_class=UserLoginForm), name='login'),
+     path('', views.loginPageView, name='login'),
+
+     #  path('', auth_views.LoginView.as_view(
+     #      template_name='aspect/login.html', form_class=UserLoginForm), name='login'),
+
      path('logout/', auth_views.LogoutView.as_view(template_name='aspect/logout.html',), name='logout'),
 
 
@@ -46,7 +48,7 @@ urlpatterns = [
                form_class=PwdResetConfirmForm),
           name="password_reset_confirm"),
 
-     path('password_reset_confirm/MTA/password_reset_complete/',
+     path('password_reset_confirm/OQ/password_reset_complete/',
           TemplateView.as_view(
                template_name="password_reset/reset_complete.html"),
           name='password_reset_complete'),

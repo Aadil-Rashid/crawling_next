@@ -16,15 +16,21 @@ class UserRegisterForm(UserCreationForm):
     # class meta gives us nested name space for configurations and keeps the configurations in one place
     class Meta:
         model = get_user_model()
-        fields = ("user_name", "email")
+        fields = ("user_name", "email", "password1", 'password2')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['user_name'].widget.attrs.update(
-            {'class':'mb-2',  'placeholder': 'Enter Username'}
+            {'placeholder': 'Enter Username'}
         )
         self.fields['email'].widget.attrs.update(
-            {'class':'mb-2', 'placeholder': 'Enter Email Id'}
+            { 'placeholder': 'Enter Email Id'}
+        )
+        self.fields['password1'].widget.attrs.update(
+            {'placeholder': 'Password'}
+        )
+        self.fields['password2'].widget.attrs.update(
+            {'placeholder': 'Retype Password'}
         )
        
 
