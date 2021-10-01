@@ -1,5 +1,5 @@
 from .models import UserModel
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
