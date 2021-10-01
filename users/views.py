@@ -52,41 +52,6 @@ def loginPageView(request):
 
 
 
-# from django.http import  HttpResponseRedirect
-
-# def UserRegisterView(request):
-#     if request.method == "POST":
-#         print("---------------post request received")
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             Testemail = form.cleaned_data['email']
-#             user.email = Testemail
-#             print("userEmail---------->", Testemail)
-#             user.set_password(form.cleaned_data['password1'])
-#             user.save()
-#             return redirect('users:login')
-#     else:
-#         form = UserRegisterForm()
-#     context = {'form': form, }
-#     return render(request, 'aspect/register.html', context)
-
-# class UserRegisterView(CreateView):
-#     model = UserModel
-#     template_name = 'aspect/register.html'
-#     form_class = UserRegisterForm
-#     success_url = '/'
-    # def form_valid(self, form):
-    #     print('************', form)
-    #     print('**********instanceof Form:  ---**', form.instance)
-
-    #     form.save()
-    #     return super(UserRegisterView, self).form_valid(form)
-
-
-
-# @allowed_users(allowed_roles=['Non-admin'])
-
 @login_required
 @nonAdmin_only
 def UserDashboardView(request):
@@ -108,6 +73,9 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = UserModel
     success_url = reverse_lazy('users:delete-confirmation')
+
+
+
 
 
 
@@ -155,3 +123,37 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 
     # def get_object(self, queryset=None):
     #     return self.request.user
+
+
+
+# from django.http import  HttpResponseRedirect
+
+# def UserRegisterView(request):
+#     if request.method == "POST":
+#         print("---------------post request received")
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             Testemail = form.cleaned_data['email']
+#             user.email = Testemail
+#             print("userEmail---------->", Testemail)
+#             user.set_password(form.cleaned_data['password1'])
+#             user.save()
+#             return redirect('users:login')
+#     else:
+#         form = UserRegisterForm()
+#     context = {'form': form, }
+#     return render(request, 'aspect/register.html', context)
+
+# class UserRegisterView(CreateView):
+#     model = UserModel
+#     template_name = 'aspect/register.html'
+#     form_class = UserRegisterForm
+#     success_url = '/'
+    # def form_valid(self, form):
+    #     print('************', form)
+    #     print('**********instanceof Form:  ---**', form.instance)
+
+    #     form.save()
+    #     return super(UserRegisterView, self).form_valid(form)
+
