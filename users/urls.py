@@ -6,6 +6,8 @@ from .import views
 
 app_name = 'users'
 
+# user.has_perm('users.add_usermodel')
+
 urlpatterns = [
      path('register/', views.UserRegisterView, name='register'),
 
@@ -48,7 +50,7 @@ urlpatterns = [
                form_class=PwdResetConfirmForm),
           name="password_reset_confirm"),
 
-     path('password_reset_confirm/OQ/password_reset_complete/',
+     path('password_reset_confirm/Mjc/password_reset_complete/',
           TemplateView.as_view(
                template_name="password_reset/reset_complete.html"),
           name='password_reset_complete'),

@@ -65,6 +65,9 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "Users"
         verbose_name_plural = "Users"
+        # permissions = [("can_fly", "Can fly in the air"),
+        #                 ("can_sing", "Can sing the song very loud"),
+        #                 ]
 
     # def get_absolute_url(self):
     #     return reverse("users:profile", kwargs={"id": self.id})

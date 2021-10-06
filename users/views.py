@@ -7,33 +7,47 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-
 from .decorators import unauthenticated_user, nonAdmin_only
-
-
 from .forms import UserRegisterForm, UserEditForm
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
 
+from django.contrib.contenttypes.models import ContentType
+
+from crawling_next.authorization import superAdmin_permissions, nonAdmin_permissions
 
 
 def UserRegisterView(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            print('form is validated')
             userType = request.POST.get('user_type', 'off')
             user = form.save()
             # if usertype is on make superadmin  
             if userType == 'on':
-                group = Group.objects.get(name='Super-admin')
+                perm = Permission.objects.get(codename='super_Admin_permission')
             else:
-                group = Group.objects.get(name='Non-admin')
-            user.groups.add(group)
+                perm = Permission.objects.get(codename='non_Admin_permission')
+
+            user.user_permissions.add(perm)
+
+            content_type = ContentType.objects.get_for_model(UserModel) 
+            user_permissions = Permission.objects.filter(content_type = content_type)
+            print('********_Permission on Model_*********')
+            print([p.codename for p in user_permissions])  
+
+            res1 = user.has_perm('users.view_usermodel')
+            print("----has view permission: -> ",res1)   
+            print("----has superadminpermission: -> ",user.has_perm('users.super_Admin_permission'))  
+            print("----has nonAdmin permission: -> ",user.has_perm('users.non_Admin_permission'))  
+
             return redirect('users:login')
     else:
         form = UserRegisterForm()
 
     context = {'form': form, }
     return render(request, 'aspect/register.html', context)
+
 
 
 @unauthenticated_user
@@ -53,7 +67,7 @@ def loginPageView(request):
 
 
 @login_required
-@nonAdmin_only
+# @nonAdmin_only
 def UserDashboardView(request):
     return render(request, 'aspect/dashboard.html')
 

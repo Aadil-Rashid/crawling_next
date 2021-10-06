@@ -12,7 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 class UserRegisterForm(UserCreationForm):
     user_name = forms.CharField(label="Enter Username", min_length=4, max_length=50, )
     email = forms.EmailField(label="Enter email", max_length=150, error_messages={'required':'Sorry, you will need an email for registration purpose'})
-  
+    # userType = forms.ChoiceField()
     # class meta gives us nested name space for configurations and keeps the configurations in one place
     class Meta:
         model = get_user_model()
