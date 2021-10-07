@@ -9,9 +9,9 @@ app_name = 'users'
 # user.has_perm('users.add_usermodel')
 
 urlpatterns = [
-     path('register/', views.UserRegisterView, name='register'),
+     path('register/', views.UserRegisterView.as_view(), name='register'),
 
-     path('dashboard/', views.UserDashboardView, name='dashboard'),
+     path('dashboard/', views.UserDashboardView.as_view(), name='dashboard'),
      path('superadmin/', views.superAdminView, name="superAdminDashboard"),
 
 
