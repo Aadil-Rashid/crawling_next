@@ -21,10 +21,10 @@ urlpatterns = [
           template_name="aspect/delete_confirm.html"), name='delete-confirmation'),
 
 
-     path('', views.loginPageView, name='login'),
+     # path('', views.loginPageView, name='login'),
 
-     #  path('', auth_views.LoginView.as_view(
-     #      template_name='aspect/login.html', form_class=UserLoginForm), name='login'),
+      path('', auth_views.LoginView.as_view(
+          template_name='aspect/login.html', form_class=UserLoginForm), name='login'),
 
      path('logout/', auth_views.LogoutView.as_view(template_name='aspect/logout.html',), name='logout'),
 
@@ -50,7 +50,7 @@ urlpatterns = [
                form_class=PwdResetConfirmForm),
           name="password_reset_confirm"),
 
-     path('password_reset_confirm/Mjc/password_reset_complete/',
+     path('password_reset_confirm/MTc/password_reset_complete/',
           TemplateView.as_view(
                template_name="password_reset/reset_complete.html"),
           name='password_reset_complete'),

@@ -61,20 +61,20 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 
 
 
-@unauthenticated_user
-# @nonAdmin_only
-def loginPageView(request):
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password =request.POST.get('password')
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			login(request, user)
-			return redirect('users:dashboard')
-		else:
-			messages.info(request, 'Username OR password is incorrect')
+# @unauthenticated_user
+# # @nonAdmin_only
+# def loginPageView(request):
+# 	if request.method == 'POST':
+# 		username = request.POST.get('username')
+# 		password =request.POST.get('password')
+# 		user = authenticate(request, username=username, password=password)
+# 		if user is not None:
+# 			login(request, user)
+# 			return redirect('users:dashboard')
+# 		else:
+# 			messages.info(request, 'Username OR password is incorrect')
 
-	return render(request, 'aspect/login.html')
+# 	return render(request, 'aspect/login.html')
 
 
 
