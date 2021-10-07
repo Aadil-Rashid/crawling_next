@@ -22,6 +22,11 @@
               method="post"
               action="."
             >
+            {% if form.errors %}
+            <div class="alert alert-primary" role="alert">
+                The credentials you provided cannot be determined to be authentic.
+            </div>
+        {% endif %}
             {% csrf_token %}
            
 
