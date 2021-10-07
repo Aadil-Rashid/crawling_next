@@ -9,7 +9,13 @@ user dashboard
 
 {% block content %}
 <div class="profile">
-<h1 class="text-center">Wellcome to the website: {{user.user_name}}</h1>
+<h2 class="text-center">Wellcome : {{user.user_name}},
+    {% if perms.users.super_Admin_permission %}
+           As super Admin User
+    {% else %}
+          As Non Admin User
+    {% endif %}
+</h2>
 <hr>
 <div class="profile-details">
 <h4 class="profile-details__email">Email: <span>{{user.email}}</span></h4>
