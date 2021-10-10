@@ -1,6 +1,6 @@
+from django.views.generic.base import TemplateView
 from .models import UserModel
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
@@ -21,7 +21,7 @@ from crawling_next.authorization import superAdmin_permissions, nonAdmin_permiss
 
 class UserRegisterView(CreateView):
     model = UserModel
-    template_name = 'aspect/register.html'
+    template_name = 'users/aspect/register.html'
     form_class = UserRegisterForm
     success_url = '/'
     def form_valid(self, form):
@@ -39,16 +39,24 @@ class UserRegisterView(CreateView):
 
 
 
-@login_required
-def superAdminView(request):
-    return render(request, 'aspect/super_admin_dashboard.html')
+# @login_required
+# def superAdminView(request):
+#     return render(request, 'aspect/super_admin_dashboard.html')
 
 class UserDashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'aspect/dashboard.html';
+    # users = UserModel.objec89ts.all()
+    template_name = 'users/aspect/dashboard.html';
+    context_object_name = 'queryset'
+
+    def get_context_data(self, **kwargs):
+        users = UserModel.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['site_users'] = users
+        return context
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
     model = UserModel
-    template_name = 'aspect/profile.html';
+    template_name = 'users/aspect/profile.html';
     form_class = UserEditForm
     success_url = reverse_lazy('users:dashboard')
 

@@ -1,20 +1,16 @@
- 
 .profile{
-    margin-top: 10vh;
-    background: beige;
-    border-radius: 80px;
-    box-shadow: 5px 8px 7px 5px rgba(0, 0, 0, 0.125);
+    margin-top: 3vh;
+    margin-bottom: 10%;
+    /* height: 100vh; */
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    /* box-shadow: 5px 8px 7px 5px rgba(0, 0, 0, 0.125); */
     padding: 60px;
-    text-transform: capitalize;
     line-height: 2em;
-    margin-bottom: 10vh;
+    /* margin-bottom: 10vh; */
 }
-.profile:hover{
-    box-shadow: 0px 0px 35px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    /* height: 53vh;
-    width: 65vw; */
-}
+
+
 .profile-details{
     margin-top: 3vh;
     margin-left: 2vw;
@@ -43,4 +39,16 @@
     color: rgb(30, 30, 107);
     font-weight: 600;
     
+}
+
+.box-container{
+    background-color:rgb(233, 240, 238);
+    padding-left: 10vw;
+    padding-right: 10vw;
+    min-height: 100vh;
+
+}
+
+.cap{
+    text-transform: capitalize;
 }

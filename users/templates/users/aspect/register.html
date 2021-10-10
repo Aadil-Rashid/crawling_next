@@ -1,0 +1,39 @@
+{% extends 'users/aspect/NewBase.html' %}
+
+{% load crispy_forms_tags %}
+
+
+<!-- Title Of page -->
+{% block title %} Signup Page {% endblock title %} 
+
+
+{% block user_content %}
+<!--begin::Signin-->
+<div class="login-form login-signin">
+  <div class="text-center mb-10 mb-lg-20">
+    <h2 class="font-weight-bold">Sign Up</h2>
+    <p class="text-muted font-weight-bold">
+      Enter your details to create your account
+    </p>
+  </div>
+
+  <!--begin::SignUp Form-->
+
+  <form class="form" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="form-group d-flex flex-wrap flex-center">
+      <button
+        id="kt_login_signup_submit"
+        class="btn btn-danger btn-block font-weight-bold px-9 py-4 my-3 mx-2"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+  <!--end::signUp Form-->
+</div>
+<!--end::Signin-->
+
+{% endblock user_content %}

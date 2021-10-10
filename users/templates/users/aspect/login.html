@@ -1,4 +1,4 @@
-{% extends 'aspect/NewBase.html' %} 
+{% extends 'users/aspect/NewBase.html' %} 
 
 {% load crispy_forms_tags %}
 
@@ -12,8 +12,7 @@
             <div class="text-center mb-10 mb-lg-20">
               <h2 class="font-weight-bold">Sign In</h2>
               <p class="text-muted font-weight-bold">
-                Enter your username and password
-              </p>
+                Enter your username and password  
             </div>
 
             <!--begin::Form-->
@@ -31,8 +30,9 @@
            
 
               <div class="form-group py-3 m-0">
+                <p class="font-weight-bold text-dark px-1">Username</p>
                 <input
-                  class="form-control h-auto border-0 px-0 placeholder-dark-75"
+                  class="form-control h-auto border-0 px-4 placeholder-dark-75"
                   type="Email"
                   placeholder="Email"
                   name="username"
@@ -40,8 +40,10 @@
                 />
               </div>
               <div class="form-group py-3 border-top m-0">
+                <p class="font-weight-bold text-dark px-1">Password</p>
+                
                 <input
-                  class="form-control h-auto border-0 px-0 placeholder-dark-75"
+                  class="form-control h-auto border-0 px-4 placeholder-dark-75"
                   type="Password"
                   placeholder="Password"
                   name="password"
@@ -58,33 +60,26 @@
                   mt-3
                 "
               >
-                <div class="checkbox-inline">
-                  <label class="checkbox checkbox-outline m-0 text-muted">
-                    <input type="checkbox" name="remember" />
-                    <span></span>
-                    Remember me
-                  </label>
-                </div>
+                
                 <a
                   href="{% url 'users:pwdreset' %}"
                   id="kt_login_forgot"
-                  class="text-muted text-hover-primary"
+                  class="mt-2 text-primary font-weight-bold"
                   >Forgot Password ?</a
                 >
               </div>
 
-              <div
-                class="
-                  form-group
-                  d-flex
-                  flex-wrap
-                  justify-content-between
-                  align-items-center
-                  mt-2
-                "
+             
+              <div>
+                <button
+                id="kt_login_signin_submit"
+                class="btn btn-danger font-weight-bold px-9 py-4 btn-block"
               >
-                <div class="my-3 mr-2">
-                  <span class="text-muted mr-2">Don't have an account?</span>
+                Sign In
+              </button>
+              </div>
+                <div class="my-9 mr-2 text-center">
+                  <span class="text-muted font-weight-bold mr-2">Create account?</span>
                   <a
                     href="{% url 'users:register' %}"
                     id="kt_login_signup"
@@ -93,13 +88,8 @@
                     Signup
                   </a>
                 </div>
-                <button
-                  id="kt_login_signin_submit"
-                  class="btn btn-primary font-weight-bold px-9 py-4 my-3"
-                >
-                  Sign In
-                </button>
-              </div>
+               
+               
             </form>
             <!--end::Form-->
           </div>

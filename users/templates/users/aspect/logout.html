@@ -1,8 +1,8 @@
-{% extends 'aspect/NewBase.html' %}
+{% extends 'users/aspect/NewBase.html' %}
 
 <!-- Title Of page -->
 {% block title %}
-   Reset Status
+   Logout
 {% endblock title %} 
 
 
@@ -10,16 +10,15 @@
      <!--begin::Forgot-->
 <div class="login-form  ">
     <div class="text-center mb-10 mb-lg-20">
-        <h3 class="">Password Successfully Reseted</h3>
-        <p class="text-muted font-weight-bold">Now you are able to login with your new password</p>
+        <h3 class="">Logout Page</h3>
+        <p class="text-muted font-weight-bold">You have been successfully logged out</p>
     </div>
 
     <div class="border-top p-4">
         <h5 class="text-center">
-         <a class="ml-2" href="{% url 'users:login' %}"><button class="btn btn-success btn-sm">Tap to login</button></a>
+         <a class="ml-2" href="{% url 'users:login' %}"><button class="btn btn-success btn-sm">Login Again</button></a>
         </h5>
     </div>
 </div>
 <!--end::Forgot-->     
 {% endblock user_content %}
-

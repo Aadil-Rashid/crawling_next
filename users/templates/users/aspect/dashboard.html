@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+
+<!-- Title Of page -->
+{% block title %}
+user dashboard
+{% endblock title %}
+
+{% block content %}
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">user_name</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Action</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+        {% if perms.users.super_Admin_permission %}
+            {% for person in site_users %}
+          <tr>
+            <td>{{ person.user_name }}</td>
+            <td class="cap" >{{ person.first_name }}</td>
+            <td class="cap" >{{ person.last_name }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.mobile_number }}</td>
+            <td><a href="{% url 'users:edit' person.id %}">Edit</a>   </td>
+          </tr>
+          {% endfor %}
+          
+        {% else %}
+            <tr>
+                <td>{{ user.user_name }}</td>
+                <td class="cap" >{{ user.first_name }}</td>
+                <td class="cap" >{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.mobile_number }}</td>
+                <td><a href="{% url 'users:edit' user.id %}">Edit</a>  </td>
+
+            </tr>
+        {% endif %}
+        </tbody>
+      </table>
+
+
+
+
+{% endblock content %}

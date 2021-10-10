@@ -18,11 +18,16 @@ USER_TYPE = (
 class UserRegisterForm(UserCreationForm):
     user_name = forms.CharField(label="Enter Username", min_length=4, max_length=50, )
     email = forms.EmailField(label="Enter email", max_length=150, error_messages={'required':'Sorry, you will need an email for registration purpose'})
-    userType = forms.ChoiceField(choices=USER_TYPE, widget=forms.RadioSelect(attrs={'class':'inline',}))
+    userType = forms.ChoiceField(choices=USER_TYPE, widget=forms.Select(attrs={'class':'bootstrap-select',}))
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
     # class meta gives us nested name space for configurations and keeps the configurations in one place
     class Meta:
         model = get_user_model()
         fields = ("userType", "user_name", "email", "password1", 'password2')
+
+         
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,6 +43,7 @@ class UserRegisterForm(UserCreationForm):
         self.fields['password2'].widget.attrs.update(
             {'placeholder': 'Retype Password'}
         )
+        
        
 
 
@@ -117,7 +123,7 @@ class PwdResetForm(PasswordResetForm):
 class PwdResetConfirmForm(SetPasswordForm):
     new_password1 = forms.CharField(
         label='New password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
+            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass1'}))
     new_password2 = forms.CharField(
         label='Repeat password', widget=forms.PasswordInput(
             attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
