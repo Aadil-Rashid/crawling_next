@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .decorators import unauthenticated_user, nonAdmin_only
-
+from django.db.models import Count
 
 from .forms import UserRegisterForm, UserEditForm
 from django.contrib.auth.models import Group, Permission
@@ -36,23 +36,22 @@ class UserRegisterView(CreateView):
         print("----has nonAdmin permission: -> ",user.has_perm('users.non_Admin_permission'))        
         return super(UserRegisterView, self).form_valid(form)
 
+ 
 
 
+class UserDashboardView(LoginRequiredMixin, ListView):
+    template_name = 'users/aspect/dashboard.html'
+    model = UserModel
+    context_object_name = 'site_users'
+    paginate_by = 5
 
-# @login_required
-# def superAdminView(request):
-#     return render(request, 'aspect/super_admin_dashboard.html')
+    # def get_context_data(self, **kwargs):
+    #     users = UserModel.objects.all()
+    #     context = super().get_context_data(**kwargs)
+    #     context['site_users'] = users
+    #     return context
 
-class UserDashboardView(LoginRequiredMixin, TemplateView):
-    # users = UserModel.objec89ts.all()
-    template_name = 'users/aspect/dashboard.html';
-    context_object_name = 'queryset'
 
-    def get_context_data(self, **kwargs):
-        users = UserModel.objects.all()
-        context = super().get_context_data(**kwargs)
-        context['site_users'] = users
-        return context
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
     model = UserModel

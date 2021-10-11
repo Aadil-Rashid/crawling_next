@@ -11,16 +11,16 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 USER_TYPE = (
-    ("superAdmin", "Super Admin"),
-    ("nonAdmin", "Non Admin"),
+    ("nonAdmin", "Non Admin Usertype"),
+    ("superAdmin", "Super Admin Usertype"),
 )
 
 class UserRegisterForm(UserCreationForm):
-    user_name = forms.CharField(label="Enter Username", min_length=4, max_length=50, )
+    user_name = forms.CharField(label="Enter username", min_length=4, max_length=50, )
     email = forms.EmailField(label="Enter email", max_length=150, error_messages={'required':'Sorry, you will need an email for registration purpose'})
-    userType = forms.ChoiceField(choices=USER_TYPE, widget=forms.Select(attrs={'class':'bootstrap-select',}))
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+    userType = forms.ChoiceField(label="User type", choices=USER_TYPE, widget=forms.Select(attrs={'class':'bootstrap-select',}))
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Confirm password", widget=forms.PasswordInput)
 
     # class meta gives us nested name space for configurations and keeps the configurations in one place
     class Meta:
